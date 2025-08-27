@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Viral Carousel Prompts — iOS Black Glossy</title>
+<meta name="theme-color" content="#0a0a0b">
+<style>
+  :root{
+    --bg:#0a0a0b;
+    --card:#111214;
+    --ink:#e7e7ea;
+    --muted:#a9a9b2;
+    --accent:#6ee7ff;
+    --accent-2:#7a9cff;
+    --glass:rgba(255,255,255,0.06);
+    --line:rgba(255,255,255,0.10);
+    --radius:20px;
+    --shadow:0 8px 30px rgba(0,0,0,0.45);
+    --btn:linear-gradient(180deg,#2a2d33, #1b1e24);
+    --btn-gloss:linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.02));
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 800px at 80% -10%, rgba(110,231,255,0.12), transparent 60%),
+      radial-gradient(1000px 700px at -10% 0%, rgba(122,156,255,0.10), transparent 60%),
+      var(--bg);
+    color:var(--ink);
+    font: 15px/1.45 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+    -webkit-font-smoothing:antialiased;
+    padding: clamp(12px, 2.5vh, 20px);
+  }
+  .wrap{
+    max-width: 720px;
+    margin: 0 auto 120px;
+  }
+  header{
+    position: sticky; top:0; z-index:10;
+    padding: 12px 10px 14px;
+    margin: -10px -10px 14px;
+    background: linear-gradient(180deg, rgba(10,10,11,0.85), rgba(10,10,11,0.60) 50%, rgba(10,10,11,0));
+    backdrop-filter: saturate(1.2) blur(10px);
+  }
+  h1{
+    font-size: 20px; margin:0 0 6px 0; letter-spacing: .2px;
+    font-weight: 700;
+  }
+  .subtitle{
+    color:var(--muted); font-size:13px;
+  }
+  .scene{
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+      var(--card);
+    border:1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: clip;
+    margin: 18px 0 28px;
+  }
+  .scene header{
+    position:relative;
+    background:
+      radial-gradient(600px 200px at 70% -40%, rgba(110,231,255,0.15), transparent 60%),
+      radial-gradient(500px 140px at 0% -20%, rgba(122,156,255,0.12), transparent 60%),
+      linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+    padding: 16px 16px 12px;
+    border-bottom: 1px solid var(--line);
+    margin:0;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.13), rgba(255,255,255,0.03));
+    border:1px solid var(--line);
+    color:var(--ink);
+    padding:6px 10px; border-radius: 1000px; font-size:12px;
+  }
+  .cards{padding: 14px}
+  .block{
+    position:relative;
+    background: var(--glass);
+    border:1px solid var(--line);
+    border-radius: 16px;
+    padding: 12px 12px 8px;
+    margin: 12px 0;
+  }
+  .block .title{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    margin-bottom: 8px;
+  }
+  .block .title h3{
+    margin:0; font-size:14px; font-weight:700; letter-spacing:.2px;
+  }
+  .copy{
+    -webkit-tap-highlight-color: transparent;
+    background: var(--btn);
+    border:1px solid rgba(255,255,255,0.10);
+    color:#fff;
+    border-radius: 12px;
+    padding:10px 12px;
+    font-size:14px; font-weight:700;
+    display:inline-flex; align-items:center; gap:8px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 8px 18px rgba(0,0,0,.35);
+    cursor:pointer;
+    transition: transform .05s ease, filter .2s ease;
+  }
+  .copy:active{ transform: scale(.98); }
+  .copy .ico{
+    width:18px; height:18px; display:inline-block;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255,255,255,.65), rgba(255,255,255,0) 55%),
+      linear-gradient(180deg, #9aa3ff, #60e7ff);
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>') center/contain no-repeat;
+    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>') center/contain no-repeat;
+  }
+  .code{
+    user-select: all;
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: var(--ink);
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    border:1px dashed rgba(255,255,255,0.15);
+    border-radius: 12px; padding: 12px; margin:0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13px; line-height: 1.45;
+  }
+  .params{
+    display:grid; gap:10px; grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 6px;
+  }
+  .param{
+    background: var(--glass);
+    border:1px solid var(--line);
+    border-radius: 14px;
+    padding: 10px;
+  }
+  .param .k{font-size:12px; color:var(--muted); margin-bottom:6px}
+  .param .v{display:flex; align-items:center; justify-content:space-between; gap:8px}
+  .pill{
+    display:inline-flex; align-items:center; gap:6px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
+    border:1px solid var(--line);
+    padding:6px 8px; border-radius:1000px; font-size:12px;
+  }
+  .percent{ color: var(--accent); font-weight:700 }
+  .num{ color:#fff; font-weight:800; letter-spacing:.2px }
+  .tiny{ font-size:12px; color:var(--muted); margin:6px 2px 0 }
+  footer{ color:var(--muted); text-align:center; font-size:12px; margin-top:28px}
+  .grid{
+    display:grid; grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  @media(min-width:560px){
+    .grid{ grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Viral Carousel — 4 Scenes (iOS Black Glossy)</h1>
+      <div class="subtitle">Copy-ready image & video prompts with rounded MidJourney v7 sliders (Stylize, Weird, Variety)</div>
+    </header>
+
+    <!-- SCENE 1 -->
+    <section class="scene" id="scene-ground">
+      <header>
+        <span class="badge">🌍 Scene 1 — Ground (Atlas Path)</span>
+      </header>
+      <div class="cards">
+        <div class="grid">
+          <!-- Image Prompt -->
+          <div class="block">
+            <div class="title">
+              <h3>Image Prompt</h3>
+              <button class="copy" data-copy-from="code-ground-image"><span class="ico"></span>Copy</button>
+            </div>
+            <pre id="code-ground-image" class="code">A boy walking across the open pages of a giant atlas that transform into rolling landscapes, miniature surreal world with paper hills and valleys, drifting clouds in a golden cinematic sky, dreamy atmosphere with deep perspective, hyper-detailed paper textures and magical storybook energy</pre>
+          </div>
+
+          <!-- Video Prompt -->
+          <div class="block">
+            <div class="title">
+              <h3>Video Prompt (5s Seamless Loop)</h3>
+              <button class="copy" data-copy-from="code-ground-video"><span class="ico"></span>Copy</button>
+            </div>
+            <pre id="code-ground-video" class="code">The boy walks steadily across the atlas pages, clouds drift slowly in one direction, paper hills ripple with subtle breathing motion, golden light glows softly, all movements continuous and cyclical so the scene loops invisibly without snapping back.</pre>
+          </div>
+        </div>
+
+        <!-- Parameters -->
+        <div class="params">
+          <div class="param">
+            <div class="k">Stylize (0–1000)</div>
+            <div class="v">
+              <span class="pill"><span class="num">350</span> <span class="percent">35%</span></span>
+              <button class="copy" data-copy-text="350"><span class="ico"></span>Copy</button>
+            </div>
+          </div>
+          <div class="param">
+            <div class="k">Weird (0–3000)</div>
+            <div class="v">
+              <span class="pill"><span class="num">360</span> <span class="percent">12%</span></span>
+              <button class="copy" data-copy-text="360"><span class="ico"></span>Copy</button>
+            </div>
+          </div>
+          <div class="param">
+            <div class="k">Variety / Chaos (0–100)</div>
+            <div class="v">
+              <span class="pill"><span class="num">20</span> <span class="percent">20%</span></span>
+              <button class="copy" data-copy-text="20"><span class="ico"></span>Copy</button>
+            </div>
+          </div>
+        </div>
+        <div class="tiny">Tip: Keep cloud drift one-way and micro “paper breathing” motion for an invisible 5s loop.</div>
+      </div>
+    </section>
+
+    <!-- SCENE 2 -->
+    <section class="scene" id="scene-mountain">
+      <header>
+        <span class="badge">🗻 Scene 2 — Mountain (Pages Peak)</span>
+      </header>
+      <div class="cards">
+        <div class="grid">
+          <div class="block">
+            <div class="title">
+              <h3>Image Prompt</h3>
+              <button class="copy" data-copy-from="code-mountain-image"><span class="ico"></span>Copy</button>
+            </div>
+            <pre id="code-mountain-image" class="code">A boy climbing a winding path up a giant mountain made of swirling stacked book pages, the peaks bending like waves of paper, drifting clouds across the horizon, golden cinematic sunlight shining through haze, surreal miniature dream world with hyper-detailed folds and atmospheric depth</pre>
+          </div>
+
+          <div class="block">
+            <div class="title">
+              <h3>Video Prompt (5s Seamless Loop)</h3>
+              <button class="copy" data-copy-from="code-mountain-video"><span class="ico"></span>Copy</button>
+            </div>
+            <pre id="code-mountain-video" class="code">The boy climbs the winding paper path, page folds shift gently like living mountains, clouds drift across the horizon in one direction, golden light flickers slightly through haze, all elements move with autonomous continuity so the loop feels endless.</pre>
+          </div>
+        </div>
+
+        <div class="params">
+          <div class="param">
+            <div class="k">Stylize (0–1000)</div>
+            <div class="v">
+              <span class="pill"><span class="num">400</span> <span class="percent">40%</span></span>
+              <button class="copy" data-copy-text="400"><span class="ico"></span>Copy</button>
+            </div>
+          </div>
+          <div class="param">
+            <div class="k">Weird (0–3000)</div>
+            <div class="v">
+              <span class="pill"><span class="num">360</span> <span class="percent">12%</span></span>
+              <button class="copy" data-copy-text="360"><span class="ico"></span>Copy</button>
+            </div>
+          </div>
+          <div class="param">
+            <div class="k">Variety / Chaos (0–100)</div>
+            <div class="v">
+              <span class="pill"><span class="num">20</span> <span class="percent">20%</span></span>
+              <button class="copy" data-copy-text="20"><span class="ico"></span>Copy</button>
+            </div>
+          </div>
+        </div>
+        <div class="tiny">Tip: Slightly higher Stylize keeps peaks majestic without breaking realism.</div>
+      </div>
+    </section>
+
+    <!-- SCENE 3 -->
+    <section class="scene" id="scene-river">
+      <header>
+        <span class="badge">🌊 Scene 3 — River (Ink Flow)</span>
+      </header>
+      <div class="cards">
+        <div class="grid">
+          <div class="block">
+            <div class="title">
+              <h3>Image Prompt</h3>
+              <button class="copy" data-copy-from="code-river-image"><span class="ico"></span>Copy</button>
+            </div>
+            <pre id="code-river-image" class="code">A boy walking beside a glowing blue river flowing across the pages of a giant open book, shimmering reflections moving on the ink surface, drifting clouds above, cinematic atmosphere with warm rim light, surreal miniature dream world where paper folds form riverbanks and valleys, hyper-detailed and dreamlike textures</pre>
+          </div>
+
+          <div class="block">
+            <div class="title">
+              <h3>Video Prompt (5s Seamless Loop)</h3>
+              <button class="copy" data-copy-from="code-river-video"><span class="ico"></span>Copy</button>
+            </div>
+            <pre id="code-river-video" class="code">The boy walks calmly beside the glowing river, the ink flows forward with shimmering reflections, paper banks ripple softly, clouds drift slowly overhead, all motion aligned to create a smooth invisible loop where nothing abruptly resets.</pre>
+          </div>
+        </div>
+
+        <div class="params">
+          <div class="param">
+            <div class="k">Stylize (0–1000)</div>
+            <div class="v">
+              <span class="pill"><span class="num">350</span> <span class="percent">35%</span></span>
+              <button class="copy" data-copy-text="350"><span class="ico"></span>Copy</button>
+            </div>
+          </div>
+          <div class="param">
+            <div class="k">Weird (0–3000)</div>
+            <div class="v">
+              <span class="pill"><span class="num">360</span> <span class="percent">12%</span></span>
+              <button class="copy" data-copy-text="360"><span class="ico"></span>Copy</button>
+            </div>
+          </div>
+          <div class="param">
+            <div class="k">Variety / Chaos (0–100)</div>
+            <div class="v">
+              <span class="pill"><span class="num">20</span> <span class="percent">20%</span></span>
+              <button class="copy" data-copy-text="20"><span class="ico"></span>Copy</button>
+            </div>
+          </div>
+        </div>
+        <div class="tiny">Tip: Look for stable ink shimmer; avoid turbulent flows that reveal the loop.</div>
+      </div>
+    </section>
+
+    <!-- SCENE 4 -->
+    <section class="scene" id="scene-sky">
+      <header>
+        <span class="badge">☁️ Scene 4 — Sky (Library Clouds)</span>
+      </header>
+      <div class="cards">
+        <div class="grid">
+          <div class="block">
+            <div class="title">
+              <h3>Image Prompt</h3>
+              <button class="copy" data-copy-from="code-sky-image"><span class="ico"></span>Copy</button>
+            </div>
+            <pre id="code-sky-image" class="code">A boy walking across floating book pages rising into the sky like drifting clouds, tiny surreal city structures built on the pages, atmospheric haze creating depth, golden cinematic horizon light, clouds softly moving across the scene, surreal miniature dreamscape with magical storytelling presence</pre>
+          </div>
+
+          <div class="block">
+            <div class="title">
+              <h3>Video Prompt (5s Seamless Loop)</h3>
+              <button class="copy" data-copy-from="code-sky-video"><span class="ico"></span>Copy</button>
+            </div>
+            <pre id="code-sky-video" class="code">The boy walks across drifting floating pages, clouds move consistently in one direction, tiny page-islands shift slightly as if on air currents, golden light pulses gently at the horizon, all motion harmonized so the loop is seamless and infinite.</pre>
+          </div>
+        </div>
+
+        <div class="params">
+          <div class="param">
+            <div class="k">Stylize (0–1000)</div>
+            <div class="v">
+              <span class="pill"><span class="num">400</span> <span class="percent">40%</span></span>
+              <button class="copy" data-copy-text="400"><span class="ico"></span>Copy</button>
+            </div>
+          </div>
+          <div class="param">
+            <div class="k">Weird (0–3000)</div>
+            <div class="v">
+              <span class="pill"><span class="num">360</span> <span class="percent">12%</span></span>
+              <button class="copy" data-copy-text="360"><span class="ico"></span>Copy</button>
+            </div>
+          </div>
+          <div class="param">
+            <div class="k">Variety / Chaos (0–100)</div>
+            <div class="v">
+              <span class="pill"><span class="num">20</span> <span class="percent">20%</span></span>
+              <button class="copy" data-copy-text="20"><span class="ico"></span>Copy</button>
+            </div>
+          </div>
+        </div>
+        <div class="tiny">Tip: Keep cloud drift slow and one-directional; micro-shifts on pages sell the “endless” illusion.</div>
+      </div>
+    </section>
+
+    <footer>v7 sliders: Stylize 0–1000 • Weird 0–3000 • Variety/Chaos 0–100 — tuned for seamless 5s loops</footer>
+  </div>
+
+<script>
+  // Copy handler — works for both "copy-from element" and "copy-text"
+  function copyToClipboard(txt){
+    if (!navigator.clipboard) {
+      const ta = document.createElement('textarea');
+      ta.value = txt;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      return;
+    }
+    navigator.clipboard.writeText(txt);
+  }
+  document.addEventListener('click', (e)=>{
+    const btn = e.target.closest('.copy');
+    if(!btn) return;
+    const fromId = btn.getAttribute('data-copy-from');
+    const inlineText = btn.getAttribute('data-copy-text');
+    let text = '';
+    if (inlineText){
+      text = inlineText;
+    } else if (fromId){
+      const el = document.getElementById(fromId);
+      text = el ? el.textContent : '';
+    }
+    if(text){
+      copyToClipboard(text);
+      btn.animate([{ transform:'scale(1)' }, { transform:'scale(0.98)' }, { transform:'scale(1)' }], { duration:180, easing:'ease-out' });
+      const old = btn.innerHTML;
+      btn.innerHTML = '✅ Copied';
+      setTimeout(()=>{ btn.innerHTML = '<span class="ico"></span>Copy'; }, 900);
+    }
+  }, {passive:true});
+</script>
+</body>
+</html>
